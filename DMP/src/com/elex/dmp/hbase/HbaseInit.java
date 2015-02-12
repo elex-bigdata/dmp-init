@@ -21,9 +21,9 @@ public class HbaseInit {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException {	
-		//HbaseOperator operator = new HbaseOperator();
-		createTable();
-		generateTestData();
+		HbaseOperator operator = new HbaseOperator();
+		//createTable();
+		//generateTestData();
 		/*byte[] type =new byte[]{PropertiesUtil.getType()};
         long now =System.currentTimeMillis();
         long stop = now - Long.parseLong(PropertiesUtil.getTimeSpanMin())*60*1000;
@@ -33,7 +33,7 @@ public class HbaseInit {
 		/*byte[] start = Bytes.toBytes("F");
 		byte[] stop = Bytes.toBytes("G");*/
 		//System.out.println(operator.QueryByPrefixRowkey("dmp_url_detail",Bytes.toBytes("F")).size());
-		//operator.queryOneRecord("dmp_user_classify", Bytes.toBytes("2n8a"));
+		operator.queryOneRecord("dmp_user_classify", Bytes.toBytes("2n8a"));
 		
 		
 	}

@@ -20,7 +20,7 @@
 <configuration>
     <property>
         <name>mapred.job.tracker</name>
-        <value>node6:19001</value>
+        <value>namenode1:8021</value>
     </property>
     <property>
         <name>ipc.server.listen.queue.size</name>
@@ -40,17 +40,17 @@
     </property>
     <property>
         <name>mapred.local.dir</name>
-        <value>/data/hadoop/cache/hadoop/mapred/local/</value>
+        <value>/data0/hadoop/cache/hadoop/mapred/local/</value>
     </property>
 
     <!-- Map side -->
     <property>
         <name>mapred.map.tasks.maximum</name>
-        <value>2</value>
+        <value>4</value>
     </property>
     <property>
         <name>mapred.tasktracker.map.tasks.maximum</name>
-        <value>2</value>
+        <value>4</value>
     </property>
     <property>
         <name>tasktracker.http.threads</name>
@@ -71,11 +71,11 @@
     <!-- Reduce side -->
     <property>
         <name>mapred.reduce.tasks.maximum</name>
-        <value>2</value>
+        <value>4</value>
     </property>
     <property>
         <name>mapred.tasktracker.reduce.tasks.maximum</name>
-        <value>2</value>
+        <value>4</value>
     </property>
     <property>
         <name>mapred.reduce.parallel.copies</name>
@@ -106,18 +106,22 @@
         <value>10</value>
     </property>
     <property>
+        <name>mapreduce.map.output.compress</name>
+        <value>true</value>
+    </property>
+    <property>
         <name>mapreduce.map.output.compress.codec</name>
         <value>com.hadoop.compression.lzo.LzoCodec</value>
     </property>
     <!-- Enable Hue plugins -->
     <!--property>
-             <name>mapred.jobtracker.plugins</name>
-                 <value>org.apache.hadoop.thriftfs.ThriftJobTrackerPlugin</value>
-                     <description>Comma-separated list of jobtracker plug-ins to be activated.
-                         </description>
-                           </property>
-                             <property>
-                                 <name>jobtracker.thrift.address</name>
-                                     <value>0.0.0.0:9290</value>
-                                       </property-->
+      <name>mapred.jobtracker.plugins</name>
+      <value>org.apache.hadoop.thriftfs.ThriftJobTrackerPlugin</value>
+      <description>Comma-separated list of jobtracker plug-ins to be activated.
+      </description>
+    </property>
+    <property>
+      <name>jobtracker.thrift.address</name>
+      <value>0.0.0.0:9290</value>
+    </property-->
 </configuration>

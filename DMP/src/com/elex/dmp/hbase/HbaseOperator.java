@@ -168,10 +168,10 @@ public class HbaseOperator {
 	 * 
 	 * @param tableName
 	 */
-	public List<Map> QueryByColumn(String tableName, String family,
+	public List<Map<String,String>> QueryByColumn(String tableName, String family,
 			String qualifier, String value) {
 
-		List<Map> list = new ArrayList<Map>(); 
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>(); 
 		try {
 			HTableInterface table = HbaseBasis.getHTablePool().getTable(tableName);
 			FilterList filterList = new FilterList();			 
@@ -186,7 +186,7 @@ public class HbaseOperator {
 			s.setFilter(filterList);					 
 			ResultScanner rs = table.getScanner(s);
 			for (Result r : rs) {
-				Map map = new HashMap();
+				Map<String,String> map = new HashMap<String,String>();
 				//System.out.println("获得到rowkey:" + new String(r.getRow()));
 				for (KeyValue keyValue : r.raw()) {
 					map.put(new String(keyValue.getQualifier()), new String(keyValue.getValue()));
