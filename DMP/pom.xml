@@ -29,11 +29,11 @@
             <descriptorRefs> 
                <descriptorRef>jar-with-dependencies</descriptorRef>  
            </descriptorRefs>  
-        <archive> 
+      <!--<archive> 
             <manifest> 
                 <mainClass>com.elex.dmp.core.InitScheduler</mainClass>  
             </manifest> 
-        </archive> 
+        </archive> --> 
        </configuration> 
        <executions> 
         <execution> 
