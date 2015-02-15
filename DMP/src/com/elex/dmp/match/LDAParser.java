@@ -33,15 +33,15 @@ public class LDAParser {
 	 * @param args
 	 * args[0]=字典路径
 	 * args[1]=聚类结果文件路径通配字符串，如/cluster/*
-	 * args[2]=topN的权重之和
+	 * args[2]=topN的权重之和 小于或等于100的整数
 	 * args[3]=topics的输出本地输出路径
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
 		LDAParser  parser = new LDAParser();
-		List<DmpTopicDescriptor> topics = parser.initTopics(new String[]{"/dmp-bak/dict/dictionary.file-0","/dmp-bak/cluster"});
-		parser.findTopN("80",topics);
-		parser.describeCluster(topics, "D:\\describe.txt");
+		List<DmpTopicDescriptor> topics = parser.initTopics(new String[]{args[0],args[1]});
+		parser.findTopN(args[2],topics);
+		parser.describeCluster(topics, args[3]);
 		
 	}
 	
