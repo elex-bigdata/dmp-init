@@ -41,7 +41,7 @@ public class TextFileToSequceFileConvertor {
 
 			if (!file.isDirectory()) {
 				hdfs_src = file.getPath();
-				if (file.getPath().getName().contains("part")) {
+				if (file.getPath().getName().startsWith("0")) {
 					try {
 						reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(hdfs_src));
 						while (reader.next(key, value)) {
