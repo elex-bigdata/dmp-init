@@ -1,6 +1,8 @@
 package com.elex.dmp.core;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
@@ -27,15 +29,14 @@ public class TextFileToSequceFileConvertor {
 		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(conf);
 
-		SequenceFile.Reader reader = null;
+		BufferedReader reader = null;
 		SequenceFile.Writer writer = SequenceFile.createWriter(conf,
 				Writer.file(dist), SequenceFile.Writer.keyClass(Text.class),
 				SequenceFile.Writer.valueClass(Text.class));
 
 		Path hdfs_src;
 		FileStatus[] srcFiles = fs.listStatus(src);
-		Text key = new Text();
-		Text value = new Text();
+		String line;
 		
 		for (FileStatus file : srcFiles) {
 
@@ -43,9 +44,13 @@ public class TextFileToSequceFileConvertor {
 				hdfs_src = file.getPath();
 				if (file.getPath().getName().startsWith("0")) {
 					try {
-						reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(hdfs_src));
-						while (reader.next(key, value)) {
-							writer.append(key, value);
+						reader =new BufferedReader(new InputStreamReader(fs.open(hdfs_src)));
+						line=reader.readLine();
+						while (line != null) {
+							if(line.split(",").length==2){
+								writer.append(new Text(line.split(",")[0]), new Text(line.split(",")[0]));
+							}						
+							line = reader.readLine();
 						}
 
 					} finally {
